@@ -299,7 +299,7 @@ class ServerlessS3Local {
           };
 
           serviceFunction.events.forEach(event => {
-              const s3 = (event && (event.s3 || event.existingS3)) || undefined;
+              const s3 = (event && (event.s3 || event.existingS3 || (event.hasOwnProperty('s3') ? event : undefined))) || undefined;
               if (!s3) {
                   return;
               }
